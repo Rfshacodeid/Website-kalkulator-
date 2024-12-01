@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator Responsif</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="calculator">
+        <div id="display" class="display">0</div>
+        <div class="buttons">
+            <button class="special" onclick="clearDisplay()">C</button>
+            <button class="operator" onclick="appendToDisplay('/')">÷</button>
+            <button class="operator" onclick="appendToDisplay('*')">×</button>
+            <button class="special" onclick="deleteLast()">←</button>
+            <button onclick="appendToDisplay('7')">7</button>
+            <button onclick="appendToDisplay('8')">8</button>
+            <button onclick="appendToDisplay('9')">9</button>
+            <button class="operator" onclick="appendToDisplay('-')">-</button>
+            <button onclick="appendToDisplay('4')">4</button>
+            <button onclick="appendToDisplay('5')">5</button>
+            <button onclick="appendToDisplay('6')">6</button>
+            <button class="operator" onclick="appendToDisplay('+')">+</button>
+            <button onclick="appendToDisplay('1')">1</button>
+            <button onclick="appendToDisplay('2')">2</button>
+            <button onclick="appendToDisplay('3')">3</button>
+            <button class="special" onclick="calculateResult()">=</button>
+            <button onclick="appendToDisplay('0')" style="grid-column: span 2;">0</button>
+            <button onclick="appendToDisplay('.')">.</button>
+        </div>
+        <div class="watermark">© Rafashaalfian</div>
+    </div>
+
+    <script>
+        let display = document.getElementById('display');
+
+        function appendToDisplay(value) {
+            if (display.innerText === '0') {
+                display.innerText = value;
+            } else {
+                display.innerText += value;
+            }
+        }
+
+        function clearDisplay() {
+            display.innerText = '0';
+        }
+
+        function deleteLast() {
+            if (display.innerText.length > 1) {
+                display.innerText = display.innerText.slice(0, -1);
+            } else {
+                display.innerText = '0';
+            }
+        }
+
+        function calculateResult() {
+            try {
+                display.innerText = eval(display.innerText);
+            } catch (e) {
+                display.innerText = 'Error';
+            }
+        }
+    </script>
+</body>
+</html>
